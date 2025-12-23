@@ -3,9 +3,10 @@ const button = document.getElementById("menu-btn");
 const nav = document.querySelector(".nav");
 const header = document.querySelector(".header");
 const enlaceHeader = document.querySelectorAll(".list-item");
-
+const sections = document.querySelectorAll(".section");
 
 const MOBILE_BREAKPOINT = 768;
+
 
 button.addEventListener("click", (e)=>{ 
     if (window.innerWidth < MOBILE_BREAKPOINT) {
@@ -30,9 +31,8 @@ oscurecer.addEventListener("click", ()=>{
 
 })
 
-// Si el usuario redimensiona a pantalla grande, cerramos el menú móvil y ocultamos overlay
 window.addEventListener('resize', ()=>{
-    if (window.innerWidth >= MOBILE_BREAKPOINT) {
+    if (window.innerWidth >= 768) {
         nav.classList.remove('open');
         oscurecer.style.display = 'none';
         document.documentElement.style.overflow = 'auto';
@@ -60,4 +60,5 @@ document
         document.body.classList.toggle("night-theme");
         nav.classList.toggle("night-theme");
         header.classList.toggle("night-theme");
+        sections.forEach(s => s.classList.toggle('night-theme'));
     });
