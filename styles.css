@@ -1,0 +1,304 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+:root{
+    --ligth-theme-bg-color: #fff;
+    --ligth-theme-text-color: #000;
+    --dark-theme-bg-color: #1c2135;
+    --dark-theme-text-color: #fff;
+
+    --bg-color-light: #fff;
+    --bg-color-dark: #1c2135;
+    
+    --font-color-light: #1c2135;
+    --font-color-dark: #f0f0e8;
+
+    --sun-color: #fabc1c;
+    --moon-color: #fffdf2;
+    --day-bg-color: #0dbdf6;
+    --night-bg-color: #272a30;
+    --cloud-color: #fffdf2;
+    --star-color: #fffdf2;
+}
+
+
+
+.oscurecer{
+    z-index: 10;
+    background-color: rgba(0, 0, 0, .3);
+    height: 100dvh;
+    width: 100dvw;
+    position: absolute;
+    display: none;
+}
+
+.header{
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+    background-color: var(--bg-color-light);
+}
+
+.menu-mobile{
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 65px;
+}
+
+.page-name h3{
+    font-weight: 200;
+    font-size: 1.5rem;
+}
+
+.page-name{
+    padding-left: 20px;
+}
+
+.page-name, #menu-btn{
+    margin: 5px 10px;
+}
+
+#menu-btn{
+    text-decoration: none;
+    color: var(--font-color-light);
+
+}
+
+#menu-btn a:visited{
+    color: var(--font-color-light);
+}
+
+#menu-btn.night-theme,
+body.night-theme #menu-btn{
+    color: var(--font-color-dark);
+}
+
+#menu-btn.night-theme a:visited,
+body.night-theme #menu-btn a:visited{
+    color: var(--font-color-dark);
+}
+
+.menu-mobile-buttons{
+    padding-right: 20px;
+}
+
+.nav-item{
+    list-style: none;
+    margin: 20px 10px;
+    font-size: 1.3rem;
+}
+
+.nav-item h3{
+    padding-left: 5px;
+    font-size: 1.5rem;
+}
+
+.nav-item a{
+    text-decoration: none;
+    color: var(--font-color-light);
+    padding-left: 20px;
+}
+.nav{
+    /* border: 1px solid #000; */
+    background-color: var(--bg-color-light);
+    z-index: 300;
+    min-width: 300px;
+    width: auto;
+    max-width: 40%;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    transform: translate(-300px, 0);
+    transition: transform .3s ease;
+}
+
+.open{
+    /* background-color: red; */
+    transform: translate(0,0);
+}
+
+.nav.night-theme{
+    background-color: var(--bg-color-dark);
+}
+
+.nav.night-theme .nav-item a{
+    color: var(--font-color-dark);
+}
+
+.menu-mobile-buttons{
+    /* border: 1px solid #000; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+body {
+    background-color: var(--bg-color-light);
+    color: var(--font-color-light);
+    height: 100dvh;
+    width: 100dvw;
+    transition: background-color 0.8s ease,
+                color 0.8s ease;
+}
+
+body.night-theme {
+    background-color: var(--bg-color-dark);
+    color: var(--font-color-dark);
+}
+
+.theme-switcher-grid {
+    display: grid;
+    grid-template-columns: repeat(54, 1px);
+    grid-template-rows: repeat(24, 1px);
+    gap: 0;
+    position: relative;
+    background-color: var(--day-bg-color);
+    border-radius: 49px;
+    border: 1px solid var(--font-color-light);
+    cursor: pointer;
+    transition: background-color 0.8s ease, border-color 0.8s ease;
+    appearance: none;
+    padding: 0;
+}
+
+.theme-switcher-grid.night-theme {
+    background-color: var(--night-bg-color);
+    color: var(--dark-theme-text-color);
+    border-color: var(--font-color-dark);
+}
+
+.sun {
+    background-color: var(--sun-color);
+    grid-column: 3 / 23;
+    grid-row: 3 / 23;
+    border-radius: 50%;
+    transition: grid-column 0.8s ease, background-color 0.8s ease;
+    height: 20px;
+}
+
+.theme-switcher-grid.night-theme .sun {
+    grid-column: 33 / 53;
+    background-color: var(--moon-color);
+}
+
+.moon-overlay {
+    position: absolute;
+    border-radius: 50%;
+    transition: left 0.8s ease, background-color 0.8s ease;
+    z-index: 1;
+    background-color: var(--day-bg-color);
+}
+
+.theme-switcher-grid.night-theme .moon-overlay {
+    display: block;
+    left: calc(28 / 54 * 100%);
+    top: calc(4 / 29 * 100%);
+    width: 18px;
+    height: 18px;
+    background-color: var(--night-bg-color);
+}
+
+.cloud-ball {
+    background-color: var(--cloud-color);
+    border-radius: 50%;
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    transition: all 0.8s ease;
+    z-index: 2;
+}
+
+#ball1 {
+  top: calc((8 / 24) * 100%);
+  left: calc((12 / 54) * 100%);
+}
+
+#ball2 {
+  top: calc((8 / 24) * 100%);
+  left: calc((17 / 54) * 100%);
+}
+
+#ball3 {
+  top: calc((8 / 24) * 100%);
+  left: calc((22 / 54) * 100%);
+}
+
+#ball4 {
+  top: calc((6 / 24) * 100%);
+  left: calc((17 / 54) * 100%);
+}
+
+.theme-switcher-grid.night-theme #ball1 {
+    top: calc((16 / 24) * 100%);
+    left: calc((16 / 54) * 100%);
+    width: 2px;
+    height: 2px;
+}
+
+.theme-switcher-grid.night-theme #ball2 {
+    top: calc((3 / 24) * 100%);
+    left: calc((22 / 54) * 100%);
+    width: 2px;
+    height: 2px;
+}
+
+.theme-switcher-grid.night-theme #ball3 {
+    top: calc((10 / 24) * 100%);
+    left: calc((29 / 54) * 100%);
+    width: 2px;
+    height: 2px;
+}
+
+.theme-switcher-grid.night-theme #ball4 {
+    top: calc((5 / 24) * 100%);
+    left: calc((34 / 54) * 100%);
+    width: 2px;
+    height: 2px;
+}
+
+.star {
+    background-color: var(--star-color);
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+#star1 {
+    top: calc((7 / 24) * 100%);
+    left: calc((10 / 54) * 100%);
+    border-radius: 50%;
+}
+
+#star2 {
+    top: calc((9 / 24) * 100%);
+    left: calc((16 / 54) * 100%);
+    border-radius: 50%;
+}
+
+#star3 {
+    top: calc((13 / 24) * 100%);
+    left: calc((23 / 54) * 100%);
+    border-radius: 50%;
+}
+
+#star4 {
+    top: calc((18 / 24) * 100%);
+    left: calc((29 / 54) * 100%);
+    border-radius: 50%;
+}
+
+.theme-switcher-grid.night-theme #star1,
+.theme-switcher-grid.night-theme #star2,
+.theme-switcher-grid.night-theme #star3,
+.theme-switcher-grid.night-theme #star4 {
+    opacity: 1;
+}
