@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./src/styles.css">
+    <link rel="stylesheet" href="./src/header.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,60 +17,67 @@
 
     </div>
     <header class="header">
-        <div class="menu-mobile">
-            <div class="page-name">
-                <h3>MatíasBuffa</h3>
+        <div class="mobile-menu">
+            <div class="menu-title">
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                        width="24" 
+                        height="24" 
+                        viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2" d="M5.536 15.536L2 12l3.536-3.536m12.928 7.072L22 12l-3.536-3.536M14 4l-4 16"/>
+                </svg>
+                <h4>MatíasBuffa</h4>
             </div>
-            <div class="menu-mobile-buttons">
-                <button
-                    class="theme-switcher-grid"
-                    id="theme-switcher-grid"
-                    aria-label="Switch theme">
-                    <div class="sun" id="sun" aria-hidden="true"></div>
-                    <div class="moon-overlay" id="moon-overlay" aria-hidden="true"></div>
-                    <div
-                        class="cloud-ball cloud-ball-left"
-                        id="ball1"
-                        aria-hidden="true">
-                    </div>
-                    <div
-                        class="cloud-ball cloud-ball-middle"
-                        id="ball2"
-                        aria-hidden="true">
-                    </div>
-                    <div
-                        class="cloud-ball cloud-ball-right"
-                        id="ball3"
-                        aria-hidden="true">
-                    </div>
-                    <div
-                        class="cloud-ball cloud-ball-top"
-                        id="ball4"
-                        aria-hidden="true">
-                    </div>
-                    <div class="star" id="star1" aria-hidden="true"></div>
-                    <div class="star" id="star2" aria-hidden="true"></div>
-                    <div class="star" id="star3" aria-hidden="true"></div>
-                    <div class="star" id="star4" aria-hidden="true"></div>
-        </button>
-                <a href="#" id="menu-btn" title="menu-btn">
-                    <i class="fa-solid fa-bars"></i>
-                </a>
-            </div>
-        </div>
-        <nav class="nav">
-            <ul class="nav-list">
-                <li class="nav-item"><a href="#">Inicio</a></li>
-                <li class="nav-item"><a href="#">Sobre mí</a></li>
-                <li class="nav-item"><a href="#">Proyectos</a></li>
-                <li class="nav-item"><a href="#">Tecnologías</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main class="main-container">
-        <section class="aboutMe-Section">
+            <div class="menu-buttons">
+                <div class="change-theme-btn">
+                    <button class="theme-switcher-grid"id="theme-switcher-grid"aria-label="Switch theme">
+                            <div class="sun" id="sun" aria-hidden="true"></div>
+                            <div class="moon-overlay" id="moon-overlay" aria-hidden="true">
 
-        </section>
+                            </div>
+                            <div class="cloud-ball cloud-ball-left" id="ball1" aria-hidden="true">
+
+                            </div> 
+                            <div class="cloud-ball cloud-ball-middle" id="ball2" aria-hidden="true">
+
+                            </div> 
+                            <div class="cloud-ball cloud-ball-right" id="ball3" aria-hidden="true">
+
+                            </div> 
+                            <div class="cloud-ball cloud-ball-top" id="ball4" aria-hidden="true">
+
+                            </div> 
+                            <div class="star" id="star1" aria-hidden="true">
+
+                            </div> 
+                            <div class="star" id="star2" aria-hidden="true">
+
+                            </div> 
+                            <div class="star" id="star3" aria-hidden="true">
+
+                            </div> 
+                            <div class="star" id="star4" aria-hidden="true">
+
+                            </div>
+                        </button>
+                </div>
+                <div class="open-mobile-menu-btn">
+                    <a href="#" id="menu-btn" title="..">
+                        <i class="fa-solid fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-list list-item"><a href="#">Inicio</a></li>
+                    <li class="nav-list list-item"><a href="#">Sobre mí</a></li>
+                    <li class="nav-list list-item"><a href="#">Proyectos</a></li>
+                    <li class="nav-list list-item"><a href="#">Tecnologías</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+
     </main>
     <script src="script.js"></script>
 </body>

@@ -2,12 +2,23 @@ const oscurecer = document.querySelector(".oscurecer");
 const button = document.getElementById("menu-btn");
 const nav = document.querySelector(".nav");
 const header = document.querySelector(".header");
+const enlaceHeader = document.querySelectorAll(".list-item");
+
+
+const MOBILE_BREAKPOINT = 768;
 
 button.addEventListener("click", (e)=>{ 
-    nav.classList.toggle('open');
-    oscurecer.style.display = 'block';
+    if (window.innerWidth < MOBILE_BREAKPOINT) {
+        nav.classList.toggle('open');
+        oscurecer.style.display = nav.classList.contains('open') ? 'block' : 'none';
+        document.documentElement.style.overflow = nav.classList.contains('open') ? 'hidden' : 'auto';
+    } else {
+        // En escritorio mostrar el nav y no usar overlay
+        nav.classList.remove('open');
+        oscurecer.style.display = 'none';
+        document.documentElement.style.overflow = 'auto';
+    }
 
-    document.getElementsByTagName("html")[0].style.overflow = "hidden";
     e.stopPropagation();
 })
 
@@ -15,24 +26,38 @@ oscurecer.addEventListener("click", ()=>{
     oscurecer.style.display = 'none';
 
     nav.classList.remove('open');
-    document.getElementsByTagName("html")[0].style.overflow = "auto";
+    document.documentElement.style.overflow = "auto";
 
 })
+
+// Si el usuario redimensiona a pantalla grande, cerramos el menú móvil y ocultamos overlay
+window.addEventListener('resize', ()=>{
+    if (window.innerWidth >= MOBILE_BREAKPOINT) {
+        nav.classList.remove('open');
+        oscurecer.style.display = 'none';
+        document.documentElement.style.overflow = 'auto';
+    }
+});
+
+enlaceHeader.forEach((enlace)=>{
+    enlace.addEventListener("click",()=>{
+        enlace.classList.add("enlace-activo");
+
+        enlaceHeader.forEach((otherEnlace)=>{
+            if(otherEnlace !== enlace){
+                otherEnlace.classList.remove("enlace-activo");
+            }
+        })
+    })
+})
+
+// Cambio de tema
 
 document
     .getElementById("theme-switcher-grid")
     .addEventListener("click", function () {
-    this.classList.toggle("night-theme");
-        const isNight = this.classList.contains("night-theme");
-            document.body.style.backgroundColor = isNight
-                ? "var(--bg-color-dark)"
-                : "var(--bg-color-light)";
-            document.body.classList.toggle("night-theme", isNight);
-            header.classList.toggle("night-theme", isNight);
-            nav.classList.toggle("night-theme", isNight);
-            button.classList.toggle("night-theme", isNight);
-            header.style.backgroundColor = isNight
-                ? "var(--bg-color-dark)"
-                : "var(--bg-color-light)";
+        this.classList.toggle("night-theme");
+        document.body.classList.toggle("night-theme");
+        nav.classList.toggle("night-theme");
+        header.classList.toggle("night-theme");
     });
-
