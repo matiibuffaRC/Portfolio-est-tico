@@ -43,6 +43,8 @@ body{
 .inicie-container-presentation{
     /* border: 1px solid #000; */
     padding: 0px 10px;
+    /* border: 1px solid #000; */
+    position: relative;
 }
 
 .inicie-container-presentation h1{
@@ -139,8 +141,8 @@ body{
 .aboutMe-container-subSections{
     /* border: 1px solid #000; */
     display: grid;
-    grid-template-columns: (1,fr);
-    grid-template-rows: (3, fr);
+    grid-template-columns: (1, 1fr);
+    grid-template-rows: (3, 1fr);
     
 }
 
@@ -174,7 +176,7 @@ body{
 
 .subSection-info p{
     margin: 0px 5px 10px 5px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding-left: 5px;
 }
 
@@ -217,9 +219,6 @@ body{
     padding-left: 15px;
 }
 
-.stack-title svg{
-    color: var(--color-green);
-}
 
 .stack-title h4{
     font-size: 1.3rem;
@@ -228,17 +227,55 @@ body{
 }
 
 .stack-technologies{
+    margin: 5px 0px;
     display: flex;
     flex-wrap: wrap;
     padding-left: 15px;
 }
 
 .tech{
-    margin: 5px 10px;
-    background-color: var(--color-green);
+    margin: 5px 7px;
+    background-color: #95d199;
     color: #fff;
-    padding: 7px 15px;
+    padding: 3px 10px;
     border-radius: 20px;
     font-size: 1.2rem;
+    cursor: pointer;
 }
 
+.tech h5{
+    color: var(--color-green);
+}
+
+.tech:hover{
+    box-shadow: 2px 2px 3px var(--color-green);
+}
+
+.skills-subSection .subSection-info{
+    margin-right: 10px;
+}
+
+@media (min-width: 768px){
+    .aboutMe-container-subSections{
+    /* border: 1px solid #000; */
+    display: grid;
+    grid-template-columns: (2, 1fr);
+    grid-template-rows: (3, 1fr);
+    
+    }
+    .experience-subSection {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    }
+
+    .skills-subSection{
+        grid-row: span 2 / span 2;
+        grid-column-start: 2;
+        grid-row-start: 1;
+    }
+
+    .tech{
+        font-size: 1rem;
+    }
+    
+}
