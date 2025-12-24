@@ -8,16 +8,27 @@ const sections = document.querySelectorAll(".section");
 const MOBILE_BREAKPOINT = 768;
 
 
+function lockScroll(){
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.overflow = 'hidden';
+    if (scrollbarWidth) document.documentElement.style.paddingRight = `${scrollbarWidth}px`;
+}
+
+function unlockScroll(){
+    document.documentElement.style.overflow = 'auto';
+    document.documentElement.style.paddingRight = '';
+}
+
 button.addEventListener("click", (e)=>{ 
     if (window.innerWidth < MOBILE_BREAKPOINT) {
-        nav.classList.toggle('open');
-        oscurecer.style.display = nav.classList.contains('open') ? 'block' : 'none';
-        document.documentElement.style.overflow = nav.classList.contains('open') ? 'hidden' : 'auto';
+        const opened = nav.classList.toggle('open');
+        oscurecer.style.display = opened ? 'block' : 'none';
+        if (opened) lockScroll(); else unlockScroll();
     } else {
         // En escritorio mostrar el nav y no usar overlay
         nav.classList.remove('open');
         oscurecer.style.display = 'none';
-        document.documentElement.style.overflow = 'auto';
+        unlockScroll();
     }
 
     e.stopPropagation();
@@ -27,7 +38,7 @@ oscurecer.addEventListener("click", ()=>{
     oscurecer.style.display = 'none';
 
     nav.classList.remove('open');
-    document.documentElement.style.overflow = "auto";
+    unlockScroll();
 
 })
 
@@ -35,7 +46,7 @@ window.addEventListener('resize', ()=>{
     if (window.innerWidth >= 768) {
         nav.classList.remove('open');
         oscurecer.style.display = 'none';
-        document.documentElement.style.overflow = 'auto';
+        unlockScroll();
     }
 });
 
