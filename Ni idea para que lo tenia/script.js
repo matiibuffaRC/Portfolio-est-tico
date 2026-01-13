@@ -4,7 +4,6 @@ const nav = document.querySelector(".nav");
 const header = document.querySelector(".header");
 const enlaceHeader = document.querySelectorAll(".list-item");
 const sections = document.querySelectorAll(".section");
-const itemList = document.querySelectorAll(".list-item");
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -54,13 +53,12 @@ window.addEventListener('resize', ()=>{
 enlaceHeader.forEach((enlace)=>{
     enlace.addEventListener("click",()=>{
         enlace.classList.add("enlace-activo");
+
         enlaceHeader.forEach((otherEnlace)=>{
             if(otherEnlace !== enlace){
                 otherEnlace.classList.remove("enlace-activo");
             }
         })
-        nav.classList.remove("open");
-        oscurecer.style.display = 'none';
     })
 })
 

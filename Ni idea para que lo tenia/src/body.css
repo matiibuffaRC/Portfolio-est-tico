@@ -9,16 +9,21 @@
 body{
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .section{
-    min-height: 100dvh;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.inicie-section{
+    min-height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* border: 1px solid #000; */
 }
 
 .inicie-container{
@@ -38,8 +43,6 @@ body{
 .inicie-container-presentation{
     /* border: 1px solid #000; */
     padding: 0px 10px;
-    /* border: 1px solid #000; */
-    position: relative;
 }
 
 .inicie-container-presentation h1{
@@ -110,11 +113,16 @@ body{
 
 }
 
+.aboutMe-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .aboutMe-container{
     /* border: 1px solid #000; */
     width: 95%;
-    max-width: 800px;
 }
 
 .aboutMe-container-title{
@@ -131,8 +139,8 @@ body{
 .aboutMe-container-subSections{
     /* border: 1px solid #000; */
     display: grid;
-    grid-template-columns: (1, 1fr);
-    grid-template-rows: (3, 1fr);
+    grid-template-columns: (1,fr);
+    grid-template-rows: (3, fr);
     
 }
 
@@ -166,7 +174,7 @@ body{
 
 .subSection-info p{
     margin: 0px 5px 10px 5px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding-left: 5px;
 }
 
@@ -209,6 +217,9 @@ body{
     padding-left: 15px;
 }
 
+.stack-title svg{
+    color: var(--color-green);
+}
 
 .stack-title h4{
     font-size: 1.3rem;
@@ -217,108 +228,17 @@ body{
 }
 
 .stack-technologies{
-    margin: 5px 0px;
     display: flex;
     flex-wrap: wrap;
     padding-left: 15px;
 }
 
 .tech{
-    margin: 5px 7px;
-    background-color: #95d199;
+    margin: 5px 10px;
+    background-color: var(--color-green);
     color: #fff;
-    padding: 3px 10px;
+    padding: 7px 15px;
     border-radius: 20px;
-    font-size: 1.1rem;
-    cursor: pointer;
+    font-size: 1.2rem;
 }
 
-.tech h5{
-    color: var(--color-green);
-}
-
-.tech:hover{
-    box-shadow: 2px 2px 3px var(--color-green);
-}
-
-.skills-subSection .subSection-info{
-    margin-right: 10px;
-}
-
-@media (min-width: 768px){
-    .aboutMe-container-subSections{
-    /* border: 1px solid #000; */
-    display: grid;
-    grid-template-columns: (2, 1fr);
-    grid-template-rows: (3, 1fr);
-    
-    }
-    .experience-subSection {
-    grid-column-start: 1;
-    grid-row-start: 2;
-    }
-
-    .skills-subSection{
-        grid-row: span 2 / span 2;
-        grid-column-start: 2;
-        grid-row-start: 1;
-    }
-
-    .tech{
-        font-size: 1rem;
-    }
-    
-}
-
-.proyects-section{
-    margin-top: 300px;
-    max-width: 800px;
-}
-
-.proyects-container{
-    /* border: 1px solid #000; */
-    box-shadow: 0px 2px 4px #0004;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-width: 90%;
-    margin: 40px;
-}
-
-.proyects-container-title{
-    margin-top: 20px;
-}
-
-.proyects-container-proyects{
-    /* border: 1px solid #000; */
-    padding: 10px;
-    width: 100%;
-    display: grid;
-    rid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    gap: 10px;
-}
-
-.proyect{
-    width: 100%;
-    background-color: #bbb;
-    margin: 10px auto;
-    max-width: 90%;
-    height: 200px;
-    /* border: 1px solid #000; */
-    box-shadow: 0px 2px 4px #0004;
-    border-radius: 15px;
-}
-
-@media (min-width: 768px){
-    .proyects-container-proyects{
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-    }
-    .proyect{
-        max-width: 450px;
-        min-width: 350px;
-        margin: 10px auto;
-    }
-}

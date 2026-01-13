@@ -1,0 +1,387 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:"Lato";
+}
+
+/* Evitar scroll horizontal causado por 100vw/overflow */
+html, body { overflow-x: hidden; }
+
+h1, h2, h3 {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+:root{
+    --dark-theme-font: #fff;
+    --light-theme-font: #151b23;
+    --color-green: #3B8640;
+    --bg-color-dark: #151b23;
+    --bg-color-light: #f5f5f5;
+
+    /* Variables del boton de cambio de colores */
+
+    --sun-color: #fabc1c;
+    --moon-color: #fffdf2;
+    --day-bg-color: #0dbdf6;
+    --night-bg-color: #272a30;
+    --cloud-color: #fffdf2;
+    --star-color: #fffdf2;
+}
+
+
+.oscurecer{
+    z-index: 10;
+    background-color: rgba(0, 0, 0, .45);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.header{
+    width: 100%;
+    height: 70px;
+    font-size: 1.4rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, .1);
+    position: fixed;
+    z-index: 30;
+    background-color: var(--bg-color-light);
+}
+
+.header.night-theme{
+    /* Sombra mejorada para modo oscuro: mayor contraste y línea de separación */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.body{
+    min-height: 100vh;
+    width: 100%;
+    transition: background-color 0.8s ease;
+    background-color: var(--bg-color-light);
+}
+
+body {
+    background-color: var(--bg-color-light);
+    color: var(--light-theme-font);
+}
+
+.night-theme{
+    background-color: var(--bg-color-dark);
+    color: var(--dark-theme-font);
+}
+
+.mobile-menu{
+    /* border: 1px solid #000; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+
+.menu-title{
+    margin-left: 20px;
+    display: flex;
+}
+
+.menu-title svg{
+    color: var(--color-green);
+}
+
+.menu-title h4{
+    margin-left: 5px;
+}
+
+.menu-buttons{
+    margin-right: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.nav{
+    position: fixed;
+    z-index: 20;
+    /* border: 1px solid #000; */
+    width: 250px;
+    height: 100vh;
+    top: 0;
+    background-color: #fff;
+    transform: translate(-300px, 0);
+    transition: transform .3s ease;
+    font-size: 1.4rem;
+}
+
+.open{
+    transform: translate(0,0);
+}
+
+.nav-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+/* Asegura que el nav también cambie en modo noche */
+.nav.night-theme{
+    background-color: var(--bg-color-dark);
+    color: var(--dark-theme-font);
+}
+
+.list-item{
+    list-style: none;
+    margin: 10px 20px;
+    padding-left: 4px;
+}
+
+a, a:visited{
+    text-decoration: none;
+    color: inherit;
+}
+
+.enlace-activo{
+    color: var(--color-green);
+    border-left: 2px solid var(--color-green);
+}
+
+
+/* Cambio de temas */
+
+.theme-switcher-grid {
+    display: grid;
+    grid-template-columns: repeat(54, 1px);
+    grid-template-rows: repeat(24, 1px);
+    gap: 0;
+    position: relative;
+    background-color: var(--day-bg-color);
+    border-radius: 49px;
+    border: 1px solid var(--border-color-light);
+    cursor: pointer;
+    transition: background-color 0.8s ease, border-color 0.8s ease;
+    appearance: none;
+    padding: 0;
+}
+
+.theme-switcher-grid.night-theme {
+    background-color: var(--night-bg-color);
+    border-color: var(--border-color-dark);
+}
+
+.sun {
+    background-color: var(--sun-color);
+    grid-column: 3 / 23;
+    grid-row: 3 / 23;
+    border-radius: 50%;
+    transition: grid-column 0.8s ease, background-color 0.8s ease;
+    height: 20px;
+}
+
+.theme-switcher-grid.night-theme .sun {
+    grid-column: 33 / 53;
+    background-color: var(--moon-color);
+}
+
+.moon-overlay {
+    position: absolute;
+    border-radius: 50%;
+    transition: left 0.8s ease, background-color 0.8s ease;
+    z-index: 1;
+    background-color: var(--day-bg-color);
+}
+
+.theme-switcher-grid.night-theme .moon-overlay {
+    display: block;
+    left: calc(28 / 54 * 100%);
+    top: calc(4 / 29 * 100%);
+    width: 18px;
+    height: 18px;
+    background-color: var(--night-bg-color);
+}
+
+.cloud-ball {
+    background-color: var(--cloud-color);
+    border-radius: 50%;
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    transition: all 0.8s ease;
+    z-index: 2;
+}
+
+#ball1 {
+    top: calc((8 / 24) * 100%);
+    left: calc((12 / 54) * 100%);
+}
+
+#ball2 {
+    top: calc((8 / 24) * 100%);
+    left: calc((17 / 54) * 100%);
+}
+
+#ball3 {
+    top: calc((8 / 24) * 100%);
+    left: calc((22 / 54) * 100%);
+}
+
+#ball4 {
+    top: calc((6 / 24) * 100%);
+    left: calc((17 / 54) * 100%);
+}
+
+.theme-switcher-grid.night-theme #ball1 {
+    top: calc((16 / 24) * 100%);
+    left: calc((16 / 54) * 100%);
+    width: 2px;
+    height: 2px;
+}
+
+.theme-switcher-grid.night-theme #ball2 {
+    top: calc((3 / 24) * 100%);
+    left: calc((22 / 54) * 100%);
+    width: 2px;
+    height: 2px;
+}
+
+.theme-switcher-grid.night-theme #ball3 {
+    top: calc((10 / 24) * 100%);
+    left: calc((29 / 54) * 100%);
+    width: 2px;
+    height: 2px;
+}
+
+.theme-switcher-grid.night-theme #ball4 {
+    top: calc((5 / 24) * 100%);
+    left: calc((34 / 54) * 100%);
+    width: 2px;
+    height: 2px;
+}
+
+.star {
+    background-color: var(--star-color);
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+#star1 {
+    top: calc((7 / 24) * 100%);
+    left: calc((10 / 54) * 100%);
+    border-radius: 50%;
+}
+
+#star2 {
+    top: calc((9 / 24) * 100%);
+    left: calc((16 / 54) * 100%);
+    border-radius: 50%;
+}
+
+#star3 {
+    top: calc((13 / 24) * 100%);
+    left: calc((23 / 54) * 100%);
+    border-radius: 50%;
+}
+
+#star4 {
+    top: calc((18 / 24) * 100%);
+    left: calc((29 / 54) * 100%);
+    border-radius: 50%;
+}
+
+.theme-switcher-grid.night-theme #star1,
+.theme-switcher-grid.night-theme #star2,
+.theme-switcher-grid.night-theme #star3,
+.theme-switcher-grid.night-theme #star4 {
+    opacity: 1;
+}
+
+/* --------------- */
+@media (min-width: 768px) {
+    /* Ocultar overlay y botón de menú móvil en desktop */
+    .oscurecer{
+        display: none !important;
+    }
+
+    .open-mobile-menu-btn{
+        display: none;
+    }
+
+    /* Layout: título a la izquierda, controles (botón tema + nav) a la derecha */
+    .mobile-menu{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 0 16px;
+    }
+
+    .menu-title{
+        margin-left: 8px;
+        margin-right: auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .menu-buttons{
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-right: 12px;
+    }
+
+    /* Mostrar el nav dentro del header en fila */
+    .nav{
+        font-size: 1.1rem;
+        position: static;
+        z-index: auto;
+        width: auto;
+        height: auto;
+        top: auto;
+        transform: none;
+        background-color: transparent;
+        display: block;
+        transition: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-list{
+        flex-direction: row;
+        gap: 24px;
+        margin: 0;
+        align-items: center;
+        display: flex;
+    }
+
+    .list-item{
+        margin: 0;
+        padding-left: px;
+        border-left: none;
+    }
+
+    /* En modo noche, dejamos el nav transparente para heredar el color del header */
+    .nav.night-theme{
+        background-color: transparent;
+        color: inherit;
+    }
+
+    /* Ocultar el botón hamburguesa */
+    #menu-btn{
+        display: none;
+    }
+
+    .enlace-activo{
+        border-bottom: 2px solid var(--color-green) ;
+    }
+}
+/* fin de archivo */
